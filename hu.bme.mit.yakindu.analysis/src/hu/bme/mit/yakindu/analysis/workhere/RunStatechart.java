@@ -15,54 +15,31 @@ import hu.bme.mit.yakindu.analysis.example.IExampleStatemachine;
 
 public class RunStatechart {
 	
-	public static void main(String[] args) throws IOException {
-		/*
-		ExampleStatemachine s = new ExampleStatemachine();
-		s.setTimer(new TimerService());
-		RuntimeService.getInstance().registerStatemachine(s, 200);
-		s.init();
-		s.enter();
-		s.runCycle();
-		print(s);
-		s.raiseStart();
-		s.runCycle();
-		System.in.read();
-		s.raiseWhite();
-		s.runCycle();
-		print(s);*/
-		Scanner sc = new Scanner(System.in);
-		
-		ExampleStatemachine s = new ExampleStatemachine();
-		s.setTimer(new TimerService());
-		RuntimeService.getInstance().registerStatemachine(s, 200);
-		s.init();
-		s.enter();
-		s.runCycle();
-		print(s);
-		s.raiseStart();
-		s.runCycle();
-		while(true) {
-		String inp = sc.nextLine();
-		switch (inp) {
-        case "black":  s.raiseBlack();
-        				s.runCycle();
-        				print(s);
-                 		break;
-                 		
-        case "white":  s.raiseWhite();
-        				s.runCycle();
-        				print(s);
-        				break;
-        				
-        case "exit": 	print(s);
-        				System.exit(0);
-        default: 		print(s);
-		}}
-		
-	}
 
+	
+	public static void main(String[] args) throws IOException {
+		
+		Scanner sc = new Scanner(System.in);	
+		
+		ExampleStatemachine s = new ExampleStatemachine();
+		
+		s.setTimer(new TimerService());
+		
+		RuntimeService.getInstance().registerStatemachine(s, 200);
+		
+		s.init();s.enter();s.runCycle();print(s);
+		
+		while(true) {String inp = sc.nextLine();
+		
+		switch (inp) {
+		case "start": s.raiseStart();break;		
+		
+        case "black":  s.raiseBlack();break;                 		
+        case "white":  s.raiseWhite();break;        				
+        case "exit": 	print(s);System.exit(0);  
+        System.out.println("case \"exit\": print(s);System.exit(0);");
+        default: 		print(s);}s.runCycle();print(s);}}
+	
 	public static void print(IExampleStatemachine s) {
 		System.out.println("W = " + s.getSCInterface().getWhiteTime());
-		System.out.println("B = " + s.getSCInterface().getBlackTime());
-	}
-}
+		System.out.println("B = " + s.getSCInterface().getBlackTime());}}
